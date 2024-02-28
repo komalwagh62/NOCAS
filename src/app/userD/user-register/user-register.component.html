@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+    <link rel="stylesheet" href="./user-register.component.scss">
+</head>
+
+<body>
+    <div class="mask d-flex align-items-center h-100 gradient-custom-3">
+        <div class="container h-100">
+            <div class="row d-flex justify-content-center align-items-center h-100">
+                <div class="col-12 col-md-9 col-lg-7 col-xl-6">
+                    <div class="card" style="border-radius: 15px;">
+                        <div class="card-body p-5">
+                            <h2 class="text-uppercase text-center mb-5">Create an account</h2>
+                            <form (ngSubmit)="onSubmit()" [formGroup]="registrationForm">
+
+                                <!-- Name -->
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="name" class="form-control form-control-lg"
+                                        formControlName="name" placeholder="Name">
+                                </div>
+
+                                <!-- Mobile Number -->
+                                <div class="form-outline mb-4">
+                                    <input type="tel" id="phoneNumber" class="form-control form-control-lg"
+                                        formControlName="PhoneNumber" placeholder="Mobile number"
+                                        (change)="onPhoneNumberChange()">
+                                </div>
+
+                                <!-- OTP -->
+                                <div *ngIf="registrationForm.get('PhoneNumber').valid" class="position-relative mb-4">
+                                    <input type="text" class="form-control form-control-lg" formControlName="otp"
+                                        placeholder="OTP">
+                                    <span class="position-absolute top-0 end-0 p-2 rounded" (click)="generateOTP()">
+                                        <i class="bi bi-arrow-repeat"></i>
+                                    </span>
+                                    <div *ngIf="registrationForm.get('otp')?.invalid && (registrationForm.get('otp')?.dirty || registrationForm.get('otp')?.touched)"
+                                        class="alert alert-danger mt-2">
+                                        <div *ngIf="registrationForm.get('otp')?.errors?.['required']">
+                                            OTP is <strong>required</strong>.
+                                        </div>
+                                        <div *ngIf="registrationForm.get('otp')?.errors?.['pattern']">
+                                            OTP must be <strong>4 digits long</strong>.
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Address -->
+                                <div class="form-outline mb-4">
+                                    <input type="text" id="Address" class="form-control form-control-lg"
+                                        formControlName="Address" placeholder="Address">
+                                </div>
+
+                                <!-- Email -->
+                                <div class="form-outline mb-4">
+                                    <input type="email" id="email" formControlName="email" placeholder="Email"
+                                        class="form-control form-control-lg" autocomplete="username">
+                                </div>
+
+                                <!-- Password -->
+                                <div class="form-outline mb-4">
+                                    <input type="password" id="password" formControlName="password"
+                                        placeholder="Password" class="form-control form-control-lg"
+                                        autocomplete="current-password">
+                                </div>
+
+                                <!-- Agreement -->
+                                <div class="form-check d-flex justify-content-center mb-3">
+                                    <input class="form-check-input me-2" type="checkbox" id="agreement">
+                                    <label class="form-check-label" for="agreement">
+                                        I agree to the <a href="#!" class="text-body"><u>Terms of service</u></a>
+                                    </label>
+                                </div>
+
+                                <!-- Register Button -->
+                                <div class="d-flex justify-content-center">
+                                    <button type="submit"
+                                        class="btn btn-success btn-block btn-lg gradient-custom-4 text-body">Register</button>
+                                </div>
+
+                                <!-- OTP Validation Button -->
+                                <div class="d-flex justify-content-center mt-3">
+                                    <button type="button" (click)="validateOTP()"
+                                        class="btn btn-primary btn-lg">Verify OTP</button>
+                                </div>
+
+                                <!-- Login Link -->
+                                <p class="text-center text-muted mt-3 mb-0">Already have an account? <a
+                                        href="UserLogin" class="fw-bold text-body"><u>Login here</u></a></p>
+
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>

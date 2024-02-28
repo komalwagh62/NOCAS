@@ -1,16 +1,21 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AdminLoginComponent } from './admin-login/admin-login.component';
-import { DatabaseComponent } from './database/database.component';
+import { HeaderComponent } from './header/header.component';
+import { UserComponent } from './userD/user-login/user.component';
+import { HomeComponent } from './home/home.component';
 import { AuthGuard } from './auth.guard';
-
+import { UserRegisterComponent } from './userD/user-register/user-register.component';
+import { AdminComponent } from './admin/admin.component';
+import { ForgotPasswordComponent } from './userD/forgot-password/forgot-password.component';
+import { MatOptionParentComponent } from '@angular/material/core';
 
 const routes: Routes = [
-  { path: '', component: AdminLoginComponent },
-  // { path: '', redirectTo: '', pathMatch: 'full' },
-  // // Add a wildcard route or a "not found" route if necessary
-  // { path: '**', redirectTo: '' },
-  { path: 'Admin/dashboard', component: DatabaseComponent },
+  {path:'Home', component: HomeComponent},
+  { path: 'UserLogin', component: UserComponent },
+  { path: 'user-registration', component: UserRegisterComponent },
+  {path:'forgot-pass', component:ForgotPasswordComponent},
+  
+  
 ];
 
 @NgModule({

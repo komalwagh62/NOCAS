@@ -12,6 +12,6 @@ export class ApiService {
   
   // Method to post data to the AWS API Gateway endpoint
   postDataToAWS(data: any) {
-    return this.http.post<any>("https://3gmjmdqupl.execute-api.us-east-2.amazonaws.com", data);
+    return this.http.post<any>("https://registrationform-9411f-default-rtdb.firebaseio.com//registrationForm.json/", data);
   }
 }
